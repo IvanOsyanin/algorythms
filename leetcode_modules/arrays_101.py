@@ -70,6 +70,22 @@ class Solution:
         return arr
 
 
+    def merge(self,
+              nums1: List[int], m: int,
+              nums2: List[int], n: int):
+        p1 = m - 1
+        p2 = n - 1
+        p = m + n - 1
+        while p2 >= 0:
+            if p1 >= 0 and nums1[p1] >= nums2[p2]:
+                nums1[p] = nums1[p1]
+                p1 -= 1
+            else:
+                nums1[p] = nums2[p2]
+                p2 -= 1
+            p -= 1
+        return nums1
+
 if __name__ == '__main__':
     solution = Solution()
     assert solution.findMaxConsecutiveOnes(nums=[1,1,0,1,1,1])  == 3
@@ -77,3 +93,9 @@ if __name__ == '__main__':
     assert solution.sortedSquares(nums=[-4,-1,0,3,10]) == [0,1,9,16,100]
     assert solution.sortedSquares(nums=[-7,-3,2,3,11]) == [4,9,9,49,121]
     assert solution.duplicateZeros([1,0,2,3,0,4,5,0]) == [1,0,0,2,3,0,0,4]
+    assert solution.merge(nums1 = [1,2,3,0,0,0], m = 3,
+                          nums2 = [2,5,6], n = 3) == [1,2,2,3,5,6]
+    assert solution.merge(nums1 = [1], m = 1, nums2 = [], n = 0) == [1]
+    assert solution.merge(nums1 = [0], m = 0, nums2 = [1], n = 1) == [1]
+
+    assert solution.merge(nums1 = [2,0], m = 1, nums2 = [1], n = 1) == [1,2]
