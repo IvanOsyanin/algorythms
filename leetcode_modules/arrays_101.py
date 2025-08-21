@@ -86,6 +86,28 @@ class Solution:
             p -= 1
         return nums1
 
+    def removeElement(self, nums: List[int], val: int) -> int:
+        i = 0
+        for num in nums:
+            if num != val:
+                nums[i] = num
+                i += 1
+        del nums[i:]
+        return i
+
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i, j = 0, 1
+        while j <= len(nums) - 1:
+            if nums[i] == nums[j]:
+                j += 1
+            else:
+                i += 1
+                nums[i] = nums[j]
+                j += 1
+        del nums[i+1:]
+        return i+1
+
+
 if __name__ == '__main__':
     solution = Solution()
     assert solution.findMaxConsecutiveOnes(nums=[1,1,0,1,1,1])  == 3
@@ -97,5 +119,7 @@ if __name__ == '__main__':
                           nums2 = [2,5,6], n = 3) == [1,2,2,3,5,6]
     assert solution.merge(nums1 = [1], m = 1, nums2 = [], n = 0) == [1]
     assert solution.merge(nums1 = [0], m = 0, nums2 = [1], n = 1) == [1]
-
     assert solution.merge(nums1 = [2,0], m = 1, nums2 = [1], n = 1) == [1,2]
+    assert solution.removeElement(nums = [3,2,2,3], val = 3) == 2
+    assert solution.removeDuplicates(nums=[0,0,1,1,1,2,2,3,3,4]) == 5
+    assert solution.removeDuplicates(nums=[1,1]) == 1
