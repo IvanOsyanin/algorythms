@@ -147,7 +147,7 @@ if __name__ == '__main__':
                           nums2=[2, 5, 6], n=3) == [1, 2, 2, 3, 5, 6]
     assert solution.merge(nums1=[1], m=1, nums2=[], n=0) == [1]
     assert solution.merge(nums1=[0], m=0, nums2=[1], n=1) == [1]
-    assert solution.merge(nums1=[2,0], m=1, nums2=[1], n=1) == [1, 2]
+    assert solution.merge(nums1=[2, 0], m=1, nums2=[1], n=1) == [1, 2]
     assert solution.removeElement(nums=[3, 2, 2, 3], val=3) == 2
     assert solution.removeDuplicates(nums=[0, 0, 1, 1, 1, 2, 2, 3, 3, 4]) == 5
     assert solution.removeDuplicates(nums=[1, 1]) == 1
