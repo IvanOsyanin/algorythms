@@ -17,9 +17,9 @@ class Solution:
         count_even = 0
         for num in nums:
             current_count = 1
-            while num  // 10 > 0:
+            while num // 10 > 0:
                 current_count += 1
-                num = num  // 10
+                num = num // 10
             if current_count % 2 == 0:
                 count_even += 1
         return count_even
@@ -69,7 +69,6 @@ class Solution:
 
         return arr
 
-
     def merge(self,
               nums1: List[int], m: int,
               nums2: List[int], n: int):
@@ -104,12 +103,40 @@ class Solution:
                 i += 1
                 nums[i] = nums[j]
                 j += 1
-        del nums[i+1:]
-        return i+1
+        del nums[i + 1:]
+        return i + 1
+
+
+    def checkIfExist(self, arr: List[int]) -> bool:
+        seen = set()
+        for num in arr:
+            if 2 * num in seen or (num % 2 == 0 and num // 2 in seen):
+                return True
+            seen.add(num)
+        return False
+
+
+    def validMountainArray(self, arr: List[int]) -> bool:
+        n = len(arr)
+        if n < 3:
+            return False
+        i = 1
+        while i < n and arr[i-1] < arr[i]:
+            i += 1
+        if i == 1 or i == n:
+            return False
+        while i < n and arr[i-1] > arr[i]:
+            i += 1
+        return i == n
 
 
 if __name__ == '__main__':
     solution = Solution()
+
+    assert solution.checkIfExist(arr=[10, 2, 5, 3]) is True
+    assert solution.checkIfExist(arr=[7, 1, 14, 11]) is True
+    assert solution.checkIfExist(arr = [3, 1, 7, 11]) is False
+    assert solution.checkIfExist(arr = [-20, 8, -6, -14, 0, -19, 14, 4]) is True
     assert solution.findMaxConsecutiveOnes(nums=[1,1,0,1,1,1])  == 3
     assert solution.findNumbers(nums=[12,345,2,6,7896]) == 2
     assert solution.sortedSquares(nums=[-4,-1,0,3,10]) == [0,1,9,16,100]
@@ -123,3 +150,8 @@ if __name__ == '__main__':
     assert solution.removeElement(nums = [3,2,2,3], val = 3) == 2
     assert solution.removeDuplicates(nums=[0,0,1,1,1,2,2,3,3,4]) == 5
     assert solution.removeDuplicates(nums=[1,1]) == 1
+    assert solution.validMountainArray(arr=[2, 1]) is False
+    assert solution.validMountainArray(arr=[3, 5, 5]) is False
+    assert solution.validMountainArray(arr=[0, 3, 2, 1]) is True
+    assert solution.validMountainArray(arr=[0, 1, 2]) is False
+    assert solution.validMountainArray(arr=[1, 3, 2]) is True
