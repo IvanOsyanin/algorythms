@@ -1,5 +1,6 @@
 import random
 
+
 def quick_sort(arr):
     """Алгоритм быстрой сортировки
     Высота стека вызова O(log(n)) - если бьем каждый
@@ -11,7 +12,7 @@ def quick_sort(arr):
     if len(arr) < 2:
         return arr
 
-    pivot = arr[random.randint(0,len(arr)-1)]
+    pivot = arr[random.randint(0, len(arr)-1)]
 
     left = [i for i in arr if i < pivot]
     middle = [x for x in arr if x == pivot]
